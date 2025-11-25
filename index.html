@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangriti Creations by Dimple Jain</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rose: { 50: '#fff1f2', 100: '#ffe4e6', 200: '#fecdd3', 300: '#fda4af', 400: '#fb7185', 500: '#f43f5e', 600: '#e11d48', 700: '#be123c', 800: '#9f1239', 900: '#881337', 950: '#4c0519' },
+                        amber: { 50: '#fffbeb', 100: '#fef3c7', 200: '#fde68a', 300: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706', 700: '#b45309', 800: '#92400e', 900: '#78350f', 950: '#451a03' },
+                        stone: { 50: '#fafaf9', 100: '#f5f5f4', 200: '#e7e5e4', 300: '#d6d3d1', 400: '#a8a29e', 500: '#78716c', 600: '#57534e', 700: '#44403c', 800: '#292524', 900: '#1c1917', 950: '#0c0a09' }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'fade-in-down': 'fadeInDown 0.5s ease-out',
+                        'bounce-in': 'bounceIn 0.5s cubic-bezier(0.8, 0, 1, 1)'
+                    },
+                    keyframes: {
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        bounceIn: {
+                            '0%': { opacity: '0', transform: 'scale(0.3)' },
+                            '50%': { opacity: '1', transform: 'scale(1.05)' },
+                            '70%': { transform: 'scale(0.9)' },
+                            '100%': { transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-stone-50 dark:bg-stone-950 text-gray-800 dark:text-gray-100 font-sans selection:bg-rose-200 dark:selection:bg-rose-800 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 bg-white/90 dark:bg-stone-900/90 backdrop-blur-md shadow-sm border-b border-stone-100 dark:border-stone-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <div class="flex flex-col items-start cursor-pointer group" onclick="window.scrollTo(0,0)">
+                    <h1 class="text-2xl md:text-3xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-800 to-amber-600 dark:from-rose-400 dark:to-amber-400 hover:from-rose-600 hover:to-amber-500 transition-all">
+                        Rangriti<span class="text-rose-900 dark:text-rose-200">Creations</span>
+                    </h1>
+                    <span class="text-[10px] uppercase tracking-[0.25em] text-gray-500 dark:text-gray-500">By Dimple Jain</span>
+                </div>
+
+                <!-- Menu Button (3 lines) - Visible on ALL screens -->
+                <button onclick="toggleMobileMenu()" class="text-gray-600 dark:text-gray-300 hover:text-rose-700 p-2">
+                    <i data-lucide="menu" class="w-8 h-8"></i>
+                </button>
+            </div>
+
+            <!-- Search Bar -->
+            <div id="search-bar" class="absolute top-full left-0 w-full bg-white dark:bg-stone-900 border-b border-gray-100 dark:border-stone-800 p-4 shadow-md z-30 hidden">
+                <div class="max-w-3xl mx-auto relative">
+                    <input type="text" id="search-input" placeholder="Search for kurtis, bags, jewelry..." oninput="handleSearch()" class="w-full pl-12 pr-4 py-3 rounded-full bg-gray-100 dark:bg-stone-800 border-none focus:ring-2 focus:ring-rose-500 outline-none text-gray-900 dark:text-white transition-all">
+                    <i data-lucide="search" class="absolute left-4 top-3.5 text-gray-400 w-5 h-5"></i>
+                    <button onclick="toggleSearch()" class="absolute right-4 top-3.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Universal Menu (Everything inside) -->
+        <div id="mobile-menu" class="bg-white dark:bg-stone-900 border-t border-gray-100 dark:border-stone-800 absolute w-full shadow-lg hidden transition-all duration-300">
+            <div class="px-4 pt-4 pb-6 space-y-2">
+                <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-3 text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-stone-800 rounded-lg transition-colors">Home</a>
+                <a href="#collection" onclick="toggleMobileMenu()" class="block px-3 py-3 text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-stone-800 rounded-lg transition-colors">Collection</a>
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-3 text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-stone-800 rounded-lg transition-colors">About</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-3 py-3 text-lg font-medium text-gray-700 dark:text-gray-200 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-stone-800 rounded-lg transition-colors">Contact</a>
+                
+                <!-- Divider -->
+                <div class="border-t border-gray-100 dark:border-stone-800 my-4"></div>
+
+                <!-- Icons Row -->
+                <div class="flex items-center justify-around pt-2 pb-4">
+                    <!-- Dark Mode Toggle -->
+                    <button onclick="toggleDarkMode()" class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-amber-500">
+                        <div class="p-3 rounded-full bg-gray-50 dark:bg-stone-800">
+                            <i data-lucide="moon" class="block dark:hidden w-5 h-5"></i>
+                            <i data-lucide="sun" class="hidden dark:block w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-medium">Theme</span>
+                    </button>
+
+                    <!-- Search Toggle -->
+                    <button onclick="toggleSearch(); toggleMobileMenu()" class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-rose-700">
+                        <div class="p-3 rounded-full bg-gray-50 dark:bg-stone-800">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </div>
+                        <span class="text-xs font-medium">Search</span>
+                    </button>
+
+                    <!-- Cart Toggle -->
+                    <button onclick="toggleCart(); toggleMobileMenu()" class="flex flex-col items-center gap-1 text-gray-600 dark:text-gray-300 hover:text-rose-700 relative">
+                        <div class="p-3 rounded-full bg-gray-50 dark:bg-stone-800 relative">
+                            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                            <span id="cart-count" class="absolute -top-1 -right-1 bg-rose-600 text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center hidden">0</span>
+                        </div>
+                        <span class="text-xs font-medium">Bag</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://cdn-ilebhee.nitrocdn.com/IuPsZzIuQrAMFwJDhjdETbrhogdZIvWS/assets/images/optimized/rev-af5e677/kamatharjun.com/wp-content/uploads/2021/08/Indian-Wedding-Photography-30.jpeg" alt="Rangriti Hero" class="w-full h-full object-cover object-top">
+            <div class="absolute inset-0 bg-gradient-to-r from-stone-900/90 via-stone-900/40 to-transparent dark:from-black/90 dark:via-black/60"></div>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-left pt-20">
+            <div class="max-w-xl animate-fade-in-down">
+                <div class="inline-block px-3 py-1 bg-amber-500/20 border border-amber-500/50 backdrop-blur-sm rounded-full mb-6">
+                    <span class="text-amber-300 font-bold tracking-widest uppercase text-xs">New Wedding Collection 2024</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
+                    Elegance in <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-rose-200 to-rose-400">Every Thread</span>
+                </h1>
+                <p class="text-lg text-gray-200 mb-8 font-light leading-relaxed border-l-4 border-amber-500 pl-4">
+                    Discover the finest ethnic wear curated by Dimple Jain. Where tradition meets contemporary grace in every handcrafted piece.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#collection" class="inline-flex items-center px-8 py-4 bg-white text-rose-900 text-base font-bold rounded-full shadow-lg hover:bg-rose-50 transition-all transform hover:scale-105">
+                        Shop Now <i data-lucide="chevron-right" class="ml-2 w-5 h-5"></i>
+                    </a>
+                    <a href="#about" class="inline-flex items-center px-8 py-4 border border-white text-white text-base font-medium rounded-full hover:bg-white/10 transition-all">
+                        Our Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="bg-white dark:bg-stone-950 py-12 border-b border-stone-100 dark:border-stone-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="p-4 bg-rose-50 dark:bg-rose-900/20 rounded-full mb-4 text-rose-700 dark:text-rose-400">
+                        <i data-lucide="star" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Premium Quality</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Hand-picked fabrics ensuring comfort and durability.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="p-4 bg-rose-50 dark:bg-rose-900/20 rounded-full mb-4 text-rose-700 dark:text-rose-400">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Authentic Designs</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Unique patterns inspired by traditional Indian artistry.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="p-4 bg-rose-50 dark:bg-rose-900/20 rounded-full mb-4 text-rose-700 dark:text-rose-400">
+                        <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Secure Shopping</h3>
+                    <p class="text-gray-500 dark:text-gray-400 text-sm">Safe payments and hassle-free returns.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-serif font-bold text-gray-900 dark:text-white mb-4">Our Curated Collection</h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-rose-400 to-amber-400 mx-auto rounded-full mb-8"></div>
+            
+            <!-- Filters -->
+            <div id="category-filters" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Populated by JS -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-stone-950 dark:bg-black text-stone-300 py-16 border-t border-stone-900 dark:border-stone-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12">
+                <div class="col-span-1 md:col-span-2">
+                    <h2 class="text-3xl font-serif font-bold text-white mb-6">Rangriti Creations</h2>
+                    <p class="mb-8 max-w-sm text-stone-400 leading-relaxed">
+                        Celebrating the essence of Indian womanhood through fashion. Designed by Dimple Jain with love, tradition, and a touch of modern elegance.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="hover:text-amber-500 transition-colors"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="hover:text-amber-500 transition-colors"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="hover:text-amber-500 transition-colors"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-wider border-b border-stone-800 pb-2 inline-block">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="hover:text-amber-500 transition-colors flex items-center gap-2">Home</a></li>
+                        <li><a href="#collection" class="hover:text-amber-500 transition-colors flex items-center gap-2">Shop All</a></li>
+                        <li><a href="#about" class="hover:text-amber-500 transition-colors flex items-center gap-2">Our Story</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold mb-6 uppercase text-sm tracking-wider border-b border-stone-800 pb-2 inline-block">Contact Us</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="phone" class="text-amber-500 mt-1 w-4 h-4"></i>
+                            <span>+91 98202 90376<br/><span class="text-xs text-stone-500">Mon-Sat, 10am - 7pm</span></span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="text-amber-500 w-4 h-4"></i>
+                            <span>rangritic@gmail.com</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="text-amber-500 mt-1 w-4 h-4"></i>
+                            <span>Mumbai, Maharashtra</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-stone-900 dark:border-stone-800 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center text-sm gap-4">
+                <p>&copy; 2024 Rangriti Creations by Dimple Jain. All rights reserved.</p>
+                <button onclick="toggleAdminLogin()" class="flex items-center gap-2 text-stone-600 hover:text-stone-400 transition-colors">
+                    <i data-lucide="lock" class="w-4 h-4"></i> Admin Login
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODALS & DRAWERS -->
+
+    <!-- Cart Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="absolute right-0 h-full w-full sm:w-96 bg-white dark:bg-stone-900 shadow-2xl flex flex-col transform transition-transform duration-300 translate-x-full" id="cart-content">
+            <div class="p-4 border-b dark:border-stone-800 flex justify-between items-center bg-rose-50 dark:bg-stone-950">
+                <h2 class="text-xl font-serif text-rose-900 dark:text-rose-100 font-bold">Your Bag (<span id="cart-count-header">0</span>)</h2>
+                <button onclick="toggleCart()" class="p-2 hover:bg-rose-100 dark:hover:bg-stone-800 rounded-full text-rose-900 dark:text-rose-100">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Cart Items Injected Here -->
+            </div>
+            <div id="cart-footer" class="border-t border-gray-100 dark:border-stone-800 p-4 bg-gray-50 dark:bg-stone-950 hidden">
+                <div class="flex justify-between mb-2 text-gray-600 dark:text-gray-400">
+                    <span>Subtotal</span>
+                    <span id="cart-total">₹0</span>
+                </div>
+                <button onclick="startCheckout()" class="w-full bg-rose-700 dark:bg-rose-800 text-white py-3 rounded-lg font-medium hover:bg-rose-800 dark:hover:bg-rose-700 transition-colors shadow-lg">
+                    Checkout Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm hidden p-4">
+        <div class="bg-white dark:bg-stone-900 rounded-xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="p-4 border-b dark:border-stone-800 flex justify-between items-center bg-gray-50 dark:bg-stone-950">
+                <h3 id="checkout-title" class="text-xl font-serif font-bold text-rose-900 dark:text-rose-100 flex items-center gap-2">
+                    Details
+                </h3>
+                <button onclick="toggleCheckout()" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto" id="checkout-body">
+                <!-- Step 1: Details Form -->
+                <form id="details-form" class="space-y-4" onsubmit="handleDetailsSubmit(event)">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="fname" placeholder="First Name" required class="w-full px-4 py-2 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none focus:ring-2 focus:ring-rose-500">
+                        <input type="text" id="lname" placeholder="Surname" required class="w-full px-4 py-2 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none focus:ring-2 focus:ring-rose-500">
+                    </div>
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="w-full px-4 py-2 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none focus:ring-2 focus:ring-rose-500">
+                    <textarea id="address" placeholder="Delivery Address" required rows="3" class="w-full px-4 py-2 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none focus:ring-2 focus:ring-rose-500"></textarea>
+                    <input type="email" id="email" placeholder="Email (Optional)" class="w-full px-4 py-2 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none focus:ring-2 focus:ring-rose-500">
+                    <button type="submit" class="w-full bg-rose-700 text-white py-3 rounded-lg font-bold shadow-md hover:bg-rose-800 mt-4">Proceed to Payment</button>
+                </form>
+
+                <!-- Step 2: Payment (Hidden initially) -->
+                <div id="payment-step" class="hidden flex flex-col items-center justify-center space-y-6 py-4">
+                    <div class="text-center">
+                        <p class="text-gray-600 dark:text-gray-300 mb-2">Total Amount to Pay</p>
+                        <p class="text-3xl font-bold text-rose-700 dark:text-rose-400" id="payment-amount">₹0</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border-2 border-dashed border-rose-200">
+                        <img id="qr-code-img" src="" alt="Payment QR" class="w-48 h-48 object-contain">
+                    </div>
+                    <p class="text-xs text-center text-gray-500">Scan with any UPI App</p>
+                    <div class="flex gap-2 w-full">
+                        <button onclick="showStep(1)" class="px-4 py-3 border rounded-lg text-gray-600 dark:text-gray-300">Back</button>
+                        <button onclick="showStep(3)" class="flex-1 bg-rose-700 text-white py-3 rounded-lg font-bold hover:bg-rose-800">I Have Made Payment</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Verification (Hidden initially) -->
+                <div id="verify-step" class="hidden space-y-6 py-4">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4 text-rose-600">
+                            <i data-lucide="file-text" class="w-8 h-8"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white">Confirm Payment</h4>
+                        <p class="text-sm text-gray-500">Enter Transaction ID (UTR) from your UPI app.</p>
+                    </div>
+                    <input type="text" id="txn-id" placeholder="Transaction ID / UTR" class="w-full px-4 py-3 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none font-mono text-center">
+                    <div class="flex gap-2 w-full">
+                        <button onclick="showStep(2)" class="px-4 py-3 border rounded-lg text-gray-600 dark:text-gray-300">Back</button>
+                        <button onclick="verifyPayment()" class="flex-1 bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700 flex items-center justify-center gap-2">
+                            <i data-lucide="check-circle" class="w-5 h-5"></i> Verify & Order
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="loading-step" class="hidden flex flex-col items-center justify-center py-12">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-rose-600 mb-4"></div>
+                    <p class="text-lg font-medium text-gray-700 dark:text-gray-300">Verifying Payment...</p>
+                </div>
+
+                <!-- Success State -->
+                <div id="success-step" class="hidden flex flex-col items-center justify-center py-10 animate-fade-in-down">
+                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
+                        <i data-lucide="check-circle" class="w-16 h-16 text-green-600"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">Order Confirmed!</h2>
+                    <p class="text-gray-500 text-center">Redirecting to WhatsApp...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-[65] flex items-center justify-center bg-black bg-opacity-70 backdrop-blur-sm hidden px-4">
+        <div class="bg-white dark:bg-stone-900 rounded-2xl shadow-2xl p-8 max-w-md w-full relative">
+            <button onclick="toggleAdminLogin()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i data-lucide="x"></i></button>
+            <h2 class="text-3xl font-serif font-bold text-center mb-8 text-rose-900 dark:text-rose-100">Admin Access</h2>
+            <form onsubmit="handleAdminSubmit(event)" class="space-y-6">
+                <input type="text" id="admin-user" placeholder="Username" class="w-full px-4 py-3 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none">
+                <input type="password" id="admin-pass" placeholder="Password" class="w-full px-4 py-3 rounded-lg border dark:border-stone-700 bg-gray-50 dark:bg-stone-800 dark:text-white outline-none">
+                <button type="submit" class="w-full bg-rose-700 text-white py-3 rounded-lg font-bold hover:bg-rose-800">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-4 right-4 bg-rose-900 text-white px-6 py-3 rounded-lg shadow-xl z-[70] hidden transform transition-all duration-300 translate-y-10 opacity-0">
+        <span id="toast-msg"></span>
+    </div>
+
+    <script>
+        // --- STATE ---
+        const products = [
+            { id: 1, name: "Embroidered Anarkali Kurti", category: "Kurtis", price: 2499, image: "https://images.biba.in/dw/image/v2/BKQK_PRD/on/demandware.static/-/Sites-biba-product-catalog/default/dw20b471c8/images/aw24/skdtgw10131aw24beg_1.jpg?sw=502&sh=753&q=100&strip=false", rating: 4.8, isNew: true },
+            { id: 2, name: "Royal Blue Silk Saree", category: "Sarees", price: 4999, image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&q=80&w=800", rating: 4.9, isNew: false },
+            { id: 3, name: "Boho Chic Tote Bag", category: "Handbags", price: 1299, image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800", rating: 4.5, isNew: true },
+            { id: 4, name: "Gold Plated Jhumkas", category: "Jewelry", price: 899, image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&q=80&w=800", rating: 4.7, isNew: false },
+            { id: 5, name: "Cotton Block Print Kurta", category: "Kurtis", price: 1499, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCWCYJdvcrFgA5FDICisfQ_QZpiTftvxk4Ww&s", rating: 4.6, isNew: false },
+            { id: 6, name: "Bridal Red Lehenga", category: "Lehengas", price: 15999, image: "https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&q=80&w=800", rating: 5.0, isNew: true },
+            { id: 7, name: "Embellished Potli Bag", category: "Handbags", price: 999, image: "https://rubans.in/cdn/shop/files/rubans-dark-green-gold-embroidered-potli-bag-with-pearl-handle-beaded-tassel-detailing-handbag-wallet-accessories-clutche-1192854235.jpg?v=1757968369", rating: 4.4, isNew: false },
+            { id: 8, name: "Kundan Choker Set", category: "Jewelry", price: 3499, image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800", rating: 4.8, isNew: true }
+        ];
+        
+        let cart = [];
+        let activeCategory = "All";
+        let searchQuery = "";
+        let isAdmin = false;
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            renderCategories();
+            renderProducts();
+            
+            // Check system theme
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+
+        // --- CORE FUNCTIONS ---
+
+        function renderCategories() {
+            const categories = ["All", "Kurtis", "Lehengas", "Sarees", "Handbags", "Jewelry"];
+            const container = document.getElementById('category-filters');
+            container.innerHTML = categories.map(cat => `
+                <button onclick="setCategory('${cat}')" class="px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${activeCategory === cat ? 'bg-rose-900 dark:bg-rose-700 text-white shadow-lg scale-105' : 'bg-white dark:bg-stone-900 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-stone-700 hover:text-rose-600'}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('product-grid');
+            const filtered = products.filter(p => {
+                const matchCat = activeCategory === "All" || p.category === activeCategory;
+                const matchSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchCat && matchSearch;
+            });
+
+            container.innerHTML = filtered.map(product => `
+                <div class="group bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 dark:border-stone-800 flex flex-col">
+                    <div class="relative h-80 overflow-hidden bg-gray-100 dark:bg-stone-800">
+                        <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        ${product.isNew ? '<span class="absolute top-3 left-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">NEW</span>' : ''}
+                        <div class="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-gradient-to-t from-black/70 to-transparent">
+                            <button onclick="addToCart(${product.id})" class="w-full bg-white text-rose-900 font-bold py-3 rounded-lg hover:bg-rose-50 transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add to Bag
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <p class="text-xs text-rose-500 dark:text-rose-400 font-bold uppercase tracking-wide">${product.category}</p>
+                            <div class="flex items-center text-amber-400 text-xs bg-amber-50 dark:bg-stone-800 px-2 py-1 rounded">
+                                <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                <span class="ml-1 text-gray-700 dark:text-gray-300 font-medium">${product.rating}</span>
+                            </div>
+                        </div>
+                        <h3 class="font-serif font-medium text-lg text-gray-900 dark:text-gray-100 mb-2 truncate">${product.name}</h3>
+                        <div class="mt-auto flex justify-between items-end border-t border-gray-100 dark:border-stone-800 pt-3">
+                            <p class="text-xl font-bold text-gray-900 dark:text-gray-100">₹${product.price.toLocaleString()}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            lucide.createIcons();
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const existing = cart.find(item => item.id === id);
+            if(existing) {
+                existing.quantity++;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            updateCartUI();
+            showToast(`Added ${product.name} to bag`);
+            // Open cart automatically
+            const drawer = document.getElementById('cart-drawer');
+            const content = document.getElementById('cart-content');
+            drawer.classList.remove('hidden');
+            setTimeout(() => content.classList.remove('translate-x-full'), 10);
+        }
+
+        function updateCartUI() {
+            const count = cart.reduce((a,c) => a + c.quantity, 0);
+            const total = cart.reduce((a,c) => a + (c.price * c.quantity), 0);
+            
+            // Badge
+            const badge = document.getElementById('cart-count');
+            const headerBadge = document.getElementById('cart-count-header');
+            if(badge) {
+                badge.innerText = count;
+                badge.classList.toggle('hidden', count === 0);
+            }
+            if(headerBadge) headerBadge.innerText = count;
+
+            // Items
+            const container = document.getElementById('cart-items');
+            const footer = document.getElementById('cart-footer');
+            
+            if(cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-full flex flex-col items-center justify-center text-gray-500">
+                        <i data-lucide="shopping-bag" class="w-16 h-16 mb-4 text-rose-200"></i>
+                        <p>Your bag is empty.</p>
+                        <button onclick="toggleCart()" class="mt-4 text-rose-600 font-medium hover:underline">Start Shopping</button>
+                    </div>
+                `;
+                footer.classList.add('hidden');
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="flex gap-4 bg-white dark:bg-stone-800 p-2 rounded-lg border border-gray-100 dark:border-stone-700 shadow-sm">
+                        <img src="${item.image}" class="w-20 h-24 object-cover rounded-md">
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-sm font-medium text-gray-900 dark:text-gray-100 line-clamp-1">${item.name}</h3>
+                                <p class="text-xs text-gray-500">${item.category}</p>
+                                <p class="text-rose-600 dark:text-rose-400 font-bold mt-1">₹${item.price.toLocaleString()}</p>
+                            </div>
+                            <div class="flex justify-between items-center mt-2">
+                                <div class="flex items-center border dark:border-stone-600 rounded-md">
+                                    <button onclick="updateQty(${item.id}, -1)" class="p-1 hover:bg-gray-100 dark:hover:bg-stone-700"><i data-lucide="minus" class="w-3 h-3"></i></button>
+                                    <span class="px-2 text-sm font-medium">${item.quantity}</span>
+                                    <button onclick="updateQty(${item.id}, 1)" class="p-1 hover:bg-gray-100 dark:hover:bg-stone-700"><i data-lucide="plus" class="w-3 h-3"></i></button>
+                                </div>
+                                <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-600"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                footer.classList.remove('hidden');
+                document.getElementById('cart-total').innerText = `₹${total.toLocaleString()}`;
+            }
+            lucide.createIcons();
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(i => i.id === id);
+            if(item) {
+                item.quantity += change;
+                if(item.quantity < 1) item.quantity = 1;
+                updateCartUI();
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            updateCartUI();
+        }
+
+        // --- UI INTERACTIONS ---
+
+        function setCategory(cat) {
+            activeCategory = cat;
+            renderCategories();
+            renderProducts();
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value;
+            renderProducts();
+        }
+
+        function toggleSearch() {
+            const bar = document.getElementById('search-bar');
+            bar.classList.toggle('hidden');
+            if(!bar.classList.contains('hidden')) document.getElementById('search-input').focus();
+        }
+
+        function toggleCart() {
+            const drawer = document.getElementById('cart-drawer');
+            const content = document.getElementById('cart-content');
+            if(drawer.classList.contains('hidden')) {
+                drawer.classList.remove('hidden');
+                setTimeout(() => content.classList.remove('translate-x-full'), 10);
+            } else {
+                content.classList.add('translate-x-full');
+                setTimeout(() => drawer.classList.add('hidden'), 300);
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function toggleDarkMode() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('hidden', 'translate-y-10', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3000);
+        }
+
+        // --- CHECKOUT FLOW ---
+
+        let checkoutData = {};
+
+        function startCheckout() {
+            toggleCart(); // Close cart
+            document.getElementById('checkout-modal').classList.remove('hidden');
+            showStep(1);
+        }
+
+        function toggleCheckout() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        function showStep(step) {
+            ['details-form', 'payment-step', 'verify-step', 'loading-step', 'success-step'].forEach(id => {
+                document.getElementById(id).classList.add('hidden');
+            });
+
+            const title = document.getElementById('checkout-title');
+            
+            if(step === 1) {
+                document.getElementById('details-form').classList.remove('hidden');
+                title.innerText = "Details";
+            } else if(step === 2) {
+                document.getElementById('payment-step').classList.remove('hidden');
+                title.innerText = "Payment";
+                
+                // Generate QR
+                const total = cart.reduce((a,c) => a + (c.price * c.quantity), 0);
+                document.getElementById('payment-amount').innerText = `₹${total.toLocaleString()}`;
+                const upiLink = `upi://pay?pa=dimplemanojjain-1@okaxis&pn=Rangriti Creations&am=${total}&cu=INR`;
+                document.getElementById('qr-code-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
+            } else if(step === 3) {
+                document.getElementById('verify-step').classList.remove('hidden');
+                title.innerText = "Verification";
+            }
+        }
+
+        function handleDetailsSubmit(e) {
+            e.preventDefault();
+            checkoutData.firstName = document.getElementById('fname').value;
+            checkoutData.lastName = document.getElementById('lname').value;
+            checkoutData.phone = document.getElementById('phone').value;
+            checkoutData.address = document.getElementById('address').value;
+            showStep(2);
+        }
+
+        function verifyPayment() {
+            const txnId = document.getElementById('txn-id').value;
+            if(!txnId) { alert("Please enter Transaction ID"); return; }
+            
+            // Show Loader
+            document.getElementById('verify-step').classList.add('hidden');
+            document.getElementById('loading-step').classList.remove('hidden');
+
+            // Simulate Check
+            setTimeout(() => {
+                document.getElementById('loading-step').classList.add('hidden');
+                document.getElementById('success-step').classList.remove('hidden');
+                
+                // Send to WhatsApp
+                setTimeout(() => {
+                    const total = cart.reduce((a,c) => a + (c.price * c.quantity), 0);
+                    let msg = `*✨ New Order Placed!* \n\n`;
+                    msg += `*👤 Customer:*\n${checkoutData.firstName} ${checkoutData.lastName}\n${checkoutData.phone}\n${checkoutData.address}\n\n`;
+                    msg += `*🛍️ Items:*\n`;
+                    cart.forEach((item, i) => msg += `${i+1}. ${item.name} x ${item.quantity}\n`);
+                    msg += `\n*💰 Total:* ₹${total}\n*🆔 Txn ID:* ${txnId}`;
+                    
+                    window.open(`https://wa.me/919820290376?text=${encodeURIComponent(msg)}`, '_blank');
+                    
+                    // Cleanup
+                    cart = [];
+                    updateCartUI();
+                    toggleCheckout();
+                    showToast("Order Placed Successfully!");
+                }, 2500);
+            }, 2000);
+        }
+
+        // --- ADMIN ---
+        function toggleAdminLogin() {
+            document.getElementById('admin-modal').classList.toggle('hidden');
+        }
+
+        function handleAdminSubmit(e) {
+            e.preventDefault();
+            const u = document.getElementById('admin-user').value;
+            const p = document.getElementById('admin-pass').value;
+            if(u === 'dimple123' && p === 'dimplejain12') {
+                alert("Logged in as Admin (Mock Dashboard)");
+                toggleAdminLogin();
+                isAdmin = true;
+                // In a real app, this would switch view to Admin Dashboard
+            } else {
+                alert("Invalid Credentials");
+            }
+        }
+
+    </script>
+</body>
+</html>
